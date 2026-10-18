@@ -41,17 +41,15 @@
     For more details:
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
-  <script src="flutter_bootstrap.js" async></script>
   <script>
     // 自动启动 Flutter 应用
-    window.addEventListener('load', function() {
-      if (typeof _flutter !== 'undefined' && _flutter.loader) {
-        _flutter.loader.loadEntrypoint({
-          onEntrypointLoaded: async function(engineInitializer) {
-            const appRunner = await engineInitializer.initializeEngine();
-            await appRunner.runApp();
-          }
-        });
+    {{flutter_js}}
+    {{flutter_build_config}}
+    
+    _flutter.loader.load({
+      onEntrypointLoaded: async function(engineInitializer) {
+        const appRunner = await engineInitializer.initializeEngine();
+        await appRunner.runApp();
       }
     });
   </script>
